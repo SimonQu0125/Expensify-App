@@ -31,7 +31,7 @@ test('should setup add expense action object with provided values',() => {
   });
 })
 
-test('should add expense to database and store', () => {
+test('should add expense to database and store', (done) => {
   const store = createMockStore({});
   const expenseData = {
     description: 'mouse',
@@ -40,7 +40,9 @@ test('should add expense to database and store', () => {
     createdAt: 1000
   };
 
-  console.log(store.dispatch(startAddExpense(expenseData)) instanceof Promise);
+  store.dispatch(startAddExpense(expenseData)).then(() => {
+    expect(1).toBe(2);
+  })
 });
 
 
